@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+  namespace: osoda
+spec:
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Data is kept after the PVC is deleted
+  nfs:
+    server: nfs
+    path: /srv/nfs/share # Your exported NFS path
+  storageClassName: ""
