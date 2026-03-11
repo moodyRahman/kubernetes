@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: k8s.headlamp.test
+    - host: headlamp.k8s.moody
       http:
         paths:
           - path: /
