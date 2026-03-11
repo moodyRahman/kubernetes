@@ -5,7 +5,6 @@ metadata:
   namespace: o11y
 spec:
   replicas: 2
-  minAvailable: 1
   selector:
     matchLabels:
       app: grafana
