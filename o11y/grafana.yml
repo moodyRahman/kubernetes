@@ -66,7 +66,38 @@ spec:
                 port:
                   name: grafana
 
-
-
-
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: o11y
+data:
+  gafana.ini: |
+    [date_formats]
+    full_date = MMM Do, YYYY @ hh:mm:ss a
+    interval_second = hh:mm:ss a
+    interval_minute = hh:mm a
+    interval_hour = MMM DD hh:mm a
+    interval_day = MMM DD
+    interval_month = YYYY-MM
+    interval_year = YYYY
+
+    [server]
+    domain = giorno-grafana.tail5b1a8.ts.net
+    ; root_url = %(protocol)s://%(domain)s:/grafana/
+    serve_from_sub_path = true
+
+    [smtp]
+    enabled = true
+    host = smtp.gmail.com:587
+    user = moududur921@gmail.com
+    password = ejge zzgi aivk jqda
+    from_address = moududur921@gmail.com
+    from_name = Grafana
+    skip_verify = false
+    startTLS_policy = OpportunisticStartTLS
+
+    [database]
+    type = postgres
+    host = postgresql.data.svc.cluster.local
