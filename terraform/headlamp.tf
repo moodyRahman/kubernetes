@@ -7,7 +7,7 @@ resource "helm_release" "headlamp" {
 }
 
 
-resource "kubernetes_service_account" "headlamp_admin" {
+resource "kubernetes_service_account_v1" "headlamp_admin" {
   depends_on = [helm_release.headlamp]
 
   metadata {
@@ -16,8 +16,8 @@ resource "kubernetes_service_account" "headlamp_admin" {
   }
 }
 
-resource "kubernetes_cluster_role_binding" "headlamp_admin" {
-  depends_on = [kubernetes_service_account.headlamp_admin]
+resource "kubernetes_cluster_role_binding_v1" "headlamp_admin" {
+  depends_on = [kubernetes_service_account_v1.headlamp_admin]
 
   metadata {
     name = "headlamp-admin"
