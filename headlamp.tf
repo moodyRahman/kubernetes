@@ -3,7 +3,18 @@ resource "helm_release" "headlamp" {
   name       = "headlamp"
   repository = "https://kubernetes-sigs.github.io/headlamp/"
   chart      = "headlamp"
-  namespace = "kube-system"
+  namespace  = "kube-system"
+
+  set = [
+    {
+      name  = "serviceAccount.create"
+      value = "false"
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "headlamp-admin"
+    },
+  ]
 }
 
 
