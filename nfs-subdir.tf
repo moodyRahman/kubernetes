@@ -4,14 +4,16 @@ resource "helm_release" "nfs_provisioner" {
   chart      = "nfs-subdir-external-provisioner"
   namespace  = "default"
 
-  set = [{
-    name      = "nfs.server"
-    value     = "nfs"
-    }, 
-    { 
-        name = "nfs.path"
-        value = "/srv/nfs/shared" 
-    }]
+  set = [
+    {
+      name  = "nfs.server"
+      value = "nfs"
+    },
+    {
+      name  = "nfs.path"
+      value = "/srv/nfs/shared"
+    }
+  ]
 }
 
 resource "kubernetes_annotations" "nfs_client_default" {
@@ -25,6 +27,6 @@ resource "kubernetes_annotations" "nfs_client_default" {
   }
 
   annotations = {
-    "storageclass.kubernetes.io/is-default-class" = "true"
+    "storageclass.kubernetes.io/is-default-class" = "false"
   }
 }
