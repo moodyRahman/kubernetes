@@ -6,14 +6,14 @@ resource "kubernetes_namespace_v1" "argocd" {
 
 
 resource "helm_release" "argocd" {
-  depends_on = [ kubernetes_namespace_v1.argocd ]
+  depends_on       = [kubernetes_namespace_v1.argocd]
   name             = "argocd"
   namespace        = "argocd"
   create_namespace = true
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "argo-cd"
 
-  
+
   set = [
     {
       name  = "configs.params.server\\.insecure"
@@ -59,6 +59,33 @@ resource "kubernetes_ingress_v1" "argocd" {
     }
   }
 }
+
+
+
+resource "argocd_application" "monorepo" {
+  metadata {
+    name = "monorepo"
+    namespace = "argocd"
+  }
+
+  spec {
+    project = "default"
+
+    destination {
+      server    = "https://kubernetes.default.svc"
+    }
+
+    source {
+      repo_url        = "https://github.com/moodyRahman/k8s-monorepo/"
+      path            = "."
+      target_revision = "HEAD"
+      directory {
+        recurse = true
+      }
+    }
+  }
+}
+
 
 # apiVersion: traefik.io/v1alpha1
 # kind: IngressRoute
