@@ -1,3 +1,4 @@
 kubeconfig.yml
 .terraform/
 terraform.tfstate*
+*.tfvars
