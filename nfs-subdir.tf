@@ -27,6 +27,6 @@ resource "kubernetes_annotations" "nfs_client_default" {
   }
 
   annotations = {
-    "storageclass.kubernetes.io/is-default-class" = "false"
+    "storageclass.kubernetes.io/is-default-class" = "true"
   }
 }
