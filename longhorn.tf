@@ -13,6 +13,13 @@ resource "helm_release" "longhorn" {
   repository = "https://charts.longhorn.io"
   chart      = "longhorn"
   namespace  = "longhorn-system"
+
+  set = [
+    {
+      name  = "persistence.defaultClass"
+      value = "false"
+    }
+  ]
 }
 
 resource "kubernetes_ingress_v1" "longhorn" {
