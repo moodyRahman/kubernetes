@@ -22,11 +22,7 @@ variable "argocd_password" {
 }
 
 provider "argocd" {
-  server_addr = "argocd.k8s.moody:443"
-  username = "admin"
-  password = var.argocd_password
-  insecure = true
-  plain_text = true
+  use_local_config = true
 }
 
 

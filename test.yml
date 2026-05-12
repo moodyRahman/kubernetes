@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: infisical
+  namespace: default
+spec:
+  encryptedData:
+    password: AgCE66EEMzuyQlujvlSum1nx7EJh7/izcHgSIoY2KY0PMm9GUGpnYfNI04JTh7vOyyH14TRSj9F6lNZXh21SqLxtJlPNMw2CTKFRHIDwoaK6Falc7DPjNzMysrQFuBBI5sCJOvRuR1B1AC3OzgfTNDAJMTvm4ATlu16PaUNL2tjinpZmjF1Rlbu71HB9+7eaKRtQ9/2609JmiWII2HwvWugmMcR0THtGcQs5cJQSdyv4TockO0ogtHMTO2ETD9x88ovOiJsSrEF1ssI/8MU126OWPB+5x4/42fM2L2cRyPBtyfPppvhZGmWNk/Q12y9ubn7xYDH3EYczNH/Mmp+4dJb3KpzSAJEi5G8xG9XojSkHSOiT3azJGAyek/fyaGfJKIXJUYgf+L5IanRRPwTHdFTP5sp6Oxk6AGRLCYK3ioaIS1vlfSMpCW9tijtnz71wruXizC3Sw+CuHuqqbgqRfB9UqbHSyhDHYkYEHteOCXgYCyMHdBC/4HgTDmpj+iPH0PLjtOYAYm/7QNFNjn+zRtjsr9o8SYl5TxWlxK7nzpL8JfwA/go+rRMOxsGL1MFrQTvlRXOqjowGd8MEiMkm8GpenBfQSK/vE7/QOxr1tONmOZIKQQy53ch3Lc3YwOsOunmcT8EWXoTy4Bal98WclFRT33hvC5MpHu0NeAmBsxeW8GjGZJ1N5xdLWunFtZ8ezMwUNHkW963jXziTl6XIsrc58xT5SmfyQaWQwvHNUW+jeKKMHx9wr5V5lqMpS8DiH3bY1/nGeNgJ8wYJLp/h0/8Y
+  template:
+    metadata:
+      name: infisical
+      namespace: default
