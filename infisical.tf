@@ -1,11 +1,12 @@
 resource "kubernetes_manifest" "infisical_secret" {
+  depends_on       = [kubernetes_namespace_v1.infisical]
   manifest = {
     apiVersion = "bitnami.com/v1alpha1"
     kind       = "SealedSecret"
 
     metadata = {
       name      = "infisical"
-      namespace = "default"
+      namespace = "infisical"
     }
 
     spec = {
@@ -22,4 +23,18 @@ resource "kubernetes_manifest" "infisical_secret" {
       }
     }
   }
+}
+
+resource "kubernetes_namespace_v1" "infisical" {
+  metadata {
+    name = "infisical"
+  }
+}
+
+
+resource "helm_release" "eso" {
+  name             = "eso"
+  create_namespace = true
+  repository       = "https://charts.external-secrets.io"
+  chart            = "external-secrets"
 }
