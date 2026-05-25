@@ -76,8 +76,8 @@ resource "argocd_application" "monorepo" {
     }
 
     source {
-      repo_url        = "https://github.com/moodyRahman/k8s-monorepo/"
-      path            = "."
+      repo_url        = "https://github.com/moodyRahman/k8s-monorepo"
+      path            = "bootstrap"
       target_revision = "HEAD"
       directory {
         recurse = true
