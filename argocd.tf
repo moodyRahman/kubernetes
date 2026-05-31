@@ -23,68 +23,68 @@ resource "helm_release" "argocd" {
 
 }
 
-resource "kubernetes_ingress_v1" "argocd" {
-  depends_on = [helm_release.argocd]
+# resource "kubernetes_ingress_v1" "argocd" {
+#   depends_on = [helm_release.argocd]
 
-  metadata {
-    name      = "argocd"
-    namespace = "argocd"
-    annotations = {
-      "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
-      "traefik.ingress.kubernetes.io/router.tls"         = "true"
-    }
-  }
+#   metadata {
+#     name      = "argocd"
+#     namespace = "argocd"
+#     annotations = {
+#       "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
+#       "traefik.ingress.kubernetes.io/router.tls"         = "true"
+#     }
+#   }
 
-  spec {
-    ingress_class_name = "traefik"
+#   spec {
+#     ingress_class_name = "traefik"
 
-    rule {
-      host = "argocd.k8s.moody"
+#     rule {
+#       host = "argocd.k8s.moody"
 
-      http {
-        path {
-          path      = "/"
-          path_type = "Prefix"
+#       http {
+#         path {
+#           path      = "/"
+#           path_type = "Prefix"
 
-          backend {
-            service {
-              name = "argocd-server"
-              port {
-                number = 80
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+#           backend {
+#             service {
+#               name = "argocd-server"
+#               port {
+#                 number = 80
+#               }
+#             }
+#           }
+#         }
+#       }
+#     }
+#   }
+# }
 
 
 
-resource "argocd_application" "monorepo" {
-  metadata {
-    name = "monorepo"
-    namespace = "argocd"
-  }
+# resource "argocd_application" "monorepo" {
+#   metadata {
+#     name = "monorepo"
+#     namespace = "argocd"
+#   }
 
-  spec {
-    project = "default"
+#   spec {
+#     project = "default"
 
-    destination {
-      server    = "https://kubernetes.default.svc"
-    }
+#     destination {
+#       server    = "https://kubernetes.default.svc"
+#     }
 
-    source {
-      repo_url        = "https://github.com/moodyRahman/k8s-monorepo"
-      path            = "bootstrap"
-      target_revision = "HEAD"
-      directory {
-        recurse = true
-      }
-    }
-  }
-}
+#     source {
+#       repo_url        = "https://github.com/moodyRahman/k8s-monorepo"
+#       path            = "bootstrap"
+#       target_revision = "HEAD"
+#       directory {
+#         recurse = true
+#       }
+#     }
+#   }
+# }
 
 
 # apiVersion: traefik.io/v1alpha1
